@@ -1,0 +1,11 @@
+= form_tag media_path, method: :get do
+	= text_field_tag :search, params[:search]
+	= submit_tag :"Get it!", name: nil
+
+%ul
+	- @medias.each do |m|
+		%li
+			= m.name
+			= link_to image_tag(m.image.url(:thumb)), m.image.url
+			
+= link_to "ADD", new_medium_path
