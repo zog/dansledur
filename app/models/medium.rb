@@ -1,7 +1,14 @@
 require 'open-uri'
 
 class Medium < ActiveRecord::Base
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  has_attached_file :image, 
+      :storage => :s3,
+      :bucket => 'dansledur',
+      :s3_credentials => {
+        :access_key_id => ENV['S3_KEY'],
+        :secret_access_key => ENV['S3_SECRET']
+      },
+      :styles => { :medium => "300x300>", :thumb => "100x100>" }
   acts_as_taggable
   attr_accessor :url
   
