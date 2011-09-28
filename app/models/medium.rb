@@ -19,7 +19,7 @@ class Medium < ActiveRecord::Base
   end
   
   def self.fetch_from_twitter
-    store = PStore.new("last_tweet.pstore")
+    store = PStore.new("tmp/last_tweet.pstore")
     store.transaction do
       last_id = store[:id].try :to_i
       if last_id
