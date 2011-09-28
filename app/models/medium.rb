@@ -29,22 +29,25 @@ class Medium < ActiveRecord::Base
         mentions = Twitter.mentions
       end
       mentions.each do |m|
-        if m.id > last_id
-          last_id = m.id
-          store[:id] = m.id.to_s 
-        end
-        tags = m.text.scan(/#(\w+)/).flatten
-        name = m.text
-        urls = m.text.scan(/((https?:\/\/)?[\w\.\-]+\.\w{2,5}(\/[\w.\-\_]+)*)/).map(&:first)
-        p m.text
-        p urls
-        urls.each do |url|
-          name = name.gsub(url, "")
-        end
-        name = name.gsub(/#\w+/, '').gsub(/\@\w+/, "").gsub(/^\s+/, '').gsub(/\s+$/, '').gsub(/\s+/, " ")
-        urls.each do |url|
-          url = "http://#{url}" unless /https?:\/\//.match(url)
-          medium = self.create! url: url, tag_list: tags, name: name
+        begin
+          if m.id > last_id
+            last_id = m.id
+            store[:id] = m.id.to_s 
+          end
+          tags = m.text.scan(/#(\w+)/).flatten
+          name = m.text
+          urls = m.text.scan(/((https?:\/\/)?[\w\.\-]+\.\w{2,5}(\/[\w.\-\_]+)*)/).map(&:first)
+          p m.text
+          p urls
+          urls.each do |url|
+            name = name.gsub(url, "")
+          end
+          name = name.gsub(/#\w+/, '').gsub(/\@\w+/, "").gsub(/^\s+/, '').gsub(/\s+$/, '').gsub(/\s+/, " ")
+          urls.each do |url|
+            url = "http://#{url}" unless /https?:\/\//.match(url)
+            medium = self.create! url: url, tag_list: tags, name: name
+          end
+        rescue
         end
       end.count
     end
