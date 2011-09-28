@@ -6,6 +6,14 @@ class MediaController < ApplicationController
     @medias = @medias.order(:created_at).all
   end
   
+  def show
+    render text: "miaou dsd"
+  end
+  
+  def update
+    render text: Medium.fetch_from_twitter.to_i
+  end
+  
   def new
     @media = Medium.new
   end

@@ -44,5 +44,12 @@ module Dansledur
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    Twitter.configure do |config|
+      config.consumer_key = "015ZZmGe0nYga8ZG31zLXw"
+      config.consumer_secret = "zsb0poqKi7yC4hHhxlLfehvC5hJ9LvBUwlL9S5CwDX0"
+      config.oauth_token = "381148102-h4DsdXPzwXJyiemwgKIGyCbcMRfr0yfz7Kw65now"
+      config.oauth_token_secret = "CwePo2TKKTqSW6bj4fQCPLx0orZyMiPmjOpkCwqy0"
+    end
   end
 end
