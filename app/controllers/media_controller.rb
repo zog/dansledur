@@ -1,11 +1,11 @@
 class MediaController < ApplicationController
-  before_filter :fetch_medium, except: [:index, :new, :create]
+  before_filter :fetch_medium, except: [:index, :new, :create, :fetch]
   
   def index
     @medias = Medium
     @search = params[:search]
     @medias = @medias.tagged_with(@search.split(' '), any: true) if @search
-    @medias = @medias.order(:'created_at DESC').all
+    @medias = @medias.order(:'created_at DESC'  ).all
   end
   
   def show
