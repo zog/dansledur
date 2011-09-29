@@ -13,15 +13,15 @@ class Medium < ActiveRecord::Base
   acts_as_taggable
   attr_accessor :url
   
+  validates :name, presence: true
+  
   def url= url
     self.image = self.class.download(url) if url.present?
     p self.image
   end
   
   def self.fetch_from_twitter
-    store = PStore.new("tmp/last_tweet.pstore")
-    store.transaction do
-      last_id = store[:id].try :to_i
+      last_id = Setting[:last_mention_id].try :to_i
       if last_id
         mentions = Twitter.mentions since_id: last_id
       else
@@ -32,7 +32,7 @@ class Medium < ActiveRecord::Base
         begin
           if m.id > last_id
             last_id = m.id
-            store[:id] = m.id.to_s 
+            Setting[:last_mention_id] = m.id
           end
           tags = m.text.scan(/#(\w+)/).flatten
           name = m.text
@@ -47,10 +47,16 @@ class Medium < ActiveRecord::Base
             url = "http://#{url}" unless /https?:\/\//.match(url)
             medium = self.create! url: url, tag_list: tags, name: name
           end
-        rescue
-        end
-      end.count
-    end
+      end
+    end.count
+  end
+  
+  def next
+    Medium.where("id > ?", self.id).first
+  end  
+  
+  def previous
+    Medium.where("id < ?", self.id).last
   end
   
   protected  

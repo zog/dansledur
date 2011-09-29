@@ -1,4 +1,6 @@
 Dansledur::Application.routes.draw do
+  devise_for :users
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,9 +50,11 @@ Dansledur::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
+
+  devise_for :users
   resources :media do
     collection do
-      match '/update', action: 'update'
+      match '/fetch', action: 'fetch'
     end
   end
   root :to => 'media#index'

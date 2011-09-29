@@ -10,6 +10,7 @@ gem 'pg'
 gem 'aws-s3'
 #gem 'omniauth', :git => 'git://github.com/intridea/omniauth.git'
 gem 'twitter'
+gem 'devise'
 #gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
 
 # Gems used only for assets and not required

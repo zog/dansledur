@@ -1,9 +1,2 @@
-= form_for @media, url: [:media] do |f|
-	%dl
-		%dt= label :name, :name
-		%dd= f.text_field :name
-		%dt= label :url, :url
-		%dd= f.url_field :url
-		%dt= label :tags, :tag_list
-		%dd= f.text_field :tag_list
-	= f.submit
+= form_for @medium, url: [:media] do |f|
+	= render partial: 'form', locals: {f: f}
