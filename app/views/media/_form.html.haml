@@ -8,7 +8,7 @@
   - if f.object.image?
     %dt= label_tag "Picture"
     %dd= image_tag(f.object.image.url(:medium))
-  
-  %dt= label :tags, :tag_list
-  %dd= f.text_field :tag_list
+  - else
+    %dt= label :tags, :tag_list
+    %dd= f.text_field :tag_list
 = f.submit
