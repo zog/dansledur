@@ -1,0 +1,20 @@
+%h1= @medium.name
+
+= link_to image_tag(@medium.image.url(:medium)), @medium.image.url
+
+%ul
+  - @medium.tag_list.each do |t|
+    %li= link_to t, media_path(search: t)
+
+%ul
+  - if @medium.previous
+    %li= link_to "☚ Previous", medium_path(@medium.previous)
+  - if @medium.next
+    %li= link_to "Next ☛", medium_path(@medium.next)
+
+- if user_signed_in?
+  %aside
+    %ul
+      %li= link_to "Edit", edit_medium_path(@medium)
+      %li= link_to "Delete", medium_path(@medium), method: :delete
+    
