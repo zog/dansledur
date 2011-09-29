@@ -2,13 +2,14 @@
   %dt= label :name, :name
   %dd= f.text_field :name, required: true
   
-  %dt= label :url, :url
-  %dd= f.url_field :url, required: true
-  
   - if f.object.image?
     %dt= label_tag "Picture"
     %dd= image_tag(f.object.image.url(:medium))
   - else
-    %dt= label :tags, :tag_list
-    %dd= f.text_field :tag_list
+    %dt= label :url, :url
+    %dd= f.url_field :url, required: true
+  
+  %dt= label :tags, :tag_list
+  %dd= f.text_field :tag_list
+  
 = f.submit
