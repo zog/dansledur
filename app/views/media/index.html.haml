@@ -1,12 +1,16 @@
 = form_tag media_path, method: :get do
-	= text_field_tag :search, params[:search]
-	= submit_tag :"Get it!", name: nil
+  = text_field_tag :search, params[:search]
+  = submit_tag :"Get it!", name: nil
 
 %ul
-	- @medias.each do |m|
-		%li
-			= m.name
-			%br
-			= link_to image_tag(m.image.url(:thumb)), medium_path(m)
-			
+  - @medias.each do |m|
+    %li
+      = m.name
+      %br
+      = link_to image_tag(m.image.url(:thumb)), medium_path(m)
+
 = link_to "ADD", new_medium_path
+
+%aside
+  - tag_cloud(Medium.tag_counts_on(:tags), %w(css1 css2 css3 css4)) do |tag, css_class| 
+    = link_to tag.name, media_path(search: tag.name), :class => css_class
