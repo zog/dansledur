@@ -17,7 +17,6 @@ class Medium < ActiveRecord::Base
   
   def url= url
     self.image = self.class.download(url) if url.present?
-    p self.image
   end
   
   def self.fetch_from_twitter
@@ -47,6 +46,7 @@ class Medium < ActiveRecord::Base
             url = "http://#{url}" unless /https?:\/\//.match(url)
             medium = self.create! url: url, tag_list: tags, name: name
           end
+        rescue
       end
     end.count
   end
