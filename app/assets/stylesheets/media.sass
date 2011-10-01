@@ -1,0 +1,41 @@
+p
+  clear: both
+
+.media-mosaic
+  li
+    float: left
+    margin-right: 1em
+    list-style-type: none
+    width: 150px
+    height: 150px
+    padding: 5px
+    border: #999 3px solid
+    .title
+      font-size: 1.2em
+      margin: 0 0 5px 0
+      
+    .image
+      position: relative 
+      height: 100px
+    a 
+      float: left
+      img
+        float: left
+        margin: auto
+
+    &.trash
+      a:after
+        content: "TRASH"
+        background: red
+        padding: 41px 16px
+        opacity: 0.95
+        left: 0
+        top: 0
+        position: absolute
+        letter-spacing: 3px
+        text-decoration: none
+        color: black
+
+  li:hover
+    a:after
+      content: none   
