@@ -1,10 +1,11 @@
-%h1= @medium.name
+%h2
+  .inner= @medium.name
 
 = link_to image_tag(@medium.image.url(:medium)), @medium.image.url
 
-%ul
+%p.tags
   - @medium.tag_list.each do |t|
-    %li= link_to t, media_path(search: t)
+    = link_to t, media_path(search: t)
 
 %ul
   - if @medium.previous

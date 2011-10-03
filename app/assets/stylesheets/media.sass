@@ -2,41 +2,64 @@ p
   clear: both
 
 .media-mosaic
+  padding: 0
   li
     float: left
-    margin-right: 1em
-    margin-bottom: 1em
+    margin-right: 20px
+    margin-bottom: 20px
     list-style-type: none
-    width: 150px
-    height: 150px
+    width: 268px
+    height: 200px
     padding: 5px
-    border: #999 3px solid
+    border: #999 1px solid
     .title
-      font-size: 1.2em
+      font-size: 1em
+      font-family: Georgia
       margin: 0 0 5px 0
+      padding: 4px 0
+      color: #444
+      letter-spacing: 1px
+      text-transform: uppercase
+      height: 37px
       
     .image
       position: relative 
       height: 100px
     a 
       float: left
+      text-decoration: underline
       img
         float: left
         margin: auto
 
     &.trash
       a:after
-        content: "TRASH"
+        font-family: Arial
+        font-weight: bold
+        font-size: 2em
+        content: "TRASH!"
         background: red
-        padding: 41px 16px
+        padding: 57px 0px 56px 0px
+        width: 268px
         opacity: 0.95
         left: 0
         top: 0
         position: absolute
-        letter-spacing: 3px
-        text-decoration: none
+        text-decoration: overline
+        letter-spacing: 29px
+        overflow: hidden
         color: black
-
+      
   li:hover
     a:after
-      content: none   
+      content: none 
+
+.tags
+  a
+    text-decoration: none
+    background: black
+    color: white
+    padding: 2px
+    &:hover
+      box-shadow: 2px 2px 5px #000
+      background: #DA60C5

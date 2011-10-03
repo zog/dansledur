@@ -8,10 +8,14 @@
 
   %body
     %header
-      - if user_signed_in?
-        = link_to "Sign out", destroy_user_session_path, method: :delete
-      - else
-        = link_to "Sign in", new_user_session_path
+      %h1= link_to "Dans le dur", '/'
+      .login
+        - if user_signed_in?
+          = link_to "Sign out", destroy_user_session_path, method: :delete
+        - else
+          = link_to "Sign in", new_user_session_path
+
+
 
     - if flash[:notice]
       .notice= flash[:notice]

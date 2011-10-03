@@ -9,8 +9,9 @@
       .image
         = link_to image_tag(m.image.url(:thumb)), medium_path(m)
 
-%p= link_to "ADD", new_medium_path
+%p= link_to "ADD A NEW ASS-KICKING PIC - RITE NOW !", new_medium_path, class: "add-medium"
 
 %aside
-  - tag_cloud(Medium.tag_counts_on(:tags), %w(css1 css2 css3 css4)) do |tag, css_class| 
-    = link_to tag.name, media_path(search: tag.name), :class => css_class
+  .tags
+    - tag_cloud(Medium.tag_counts_on(:tags), %w(css1 css2 css3 css4)) do |tag, css_class| 
+      = link_to tag.name, media_path(search: tag.name), :class => css_class
