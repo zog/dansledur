@@ -1,21 +1,24 @@
-%h2
-  .inner= @medium.name
+.medium
+  %header
+    %h2
+      .inner
+        %span= @medium.name
+    %ul.pagination
+      - if @medium.previous
+        %li= link_to "☚ Previous", medium_path(@medium.previous)
+      - if @medium.next
+        %li= link_to "Next ☛", medium_path(@medium.next)
 
-= link_to image_tag(@medium.image.url(:medium)), @medium.image.url
+  .img= link_to image_tag(@medium.image.url(:medium)), @medium.image.url 
 
-%p.tags
-  - @medium.tag_list.each do |t|
-    = link_to t, media_path(search: t)
-
-%ul
-  - if @medium.previous
-    %li= link_to "☚ Previous", medium_path(@medium.previous)
-  - if @medium.next
-    %li= link_to "Next ☛", medium_path(@medium.next)
-
-- if user_signed_in?
   %aside
-    %ul
-      %li= link_to "Edit", edit_medium_path(@medium)
-      %li= link_to "Delete", medium_path(@medium), method: :delete
-    
+    %h3= "Tags"
+    %ul.tags
+      - @medium.tag_list.each do |t|
+        %li= link_to t, media_path(search: t)
+    - if user_signed_in?
+      %ul
+        %li= link_to "Edit", edit_medium_path(@medium)
+        %li= link_to "Delete", medium_path(@medium), method: :delete
+  .clear
+      

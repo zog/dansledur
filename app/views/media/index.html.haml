@@ -1,6 +1,9 @@
 = form_tag media_path, method: :get do
+  = label :search, "Search by tag :"
   = text_field_tag :search, params[:search]
   = submit_tag :"Get it!", name: nil
+  - if params[:search]
+    = link_to 'Clear', '/', class: 'clear-search'
 
 %ul.media-mosaic
   - @medias.each do |m|
