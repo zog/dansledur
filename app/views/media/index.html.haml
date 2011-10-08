@@ -6,11 +6,17 @@
     = link_to 'Clear', '/', class: 'clear-search'
 
 %ul.media-mosaic
+  - if @medias.current_page.to_i > 1
+    %li.pagination.previous
+      = link_to 'prev page', media_path(params.merge(page:  @medias.current_page.to_i - 1))
   - @medias.each do |m|
-    %li{class: m.tag_list}
-      .title= m.name
+    %li{class: ['medium'] << m.tag_list}
+      .title= link_to m.name, medium_path(m)
       .image
         = link_to image_tag(m.image.url(:thumb)), medium_path(m)
+  - if @medias.current_page.to_i < @medias.total_pages
+    %li.pagination.next
+      = link_to 'next page', media_path(params.merge(page:  @medias.current_page.to_i + 1))
 
 %p= link_to "ADD A NEW ASS-KICKING PIC - RITE NOW !", new_medium_path, class: "add-medium"
 

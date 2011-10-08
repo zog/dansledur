@@ -5,7 +5,7 @@ class MediaController < ApplicationController
     @medias = Medium
     @search = params[:search]
     @medias = @medias.tagged_with(@search.split(' '), any: true) if @search
-    @medias = @medias.order(:'created_at DESC'  ).all
+    @medias = @medias.order(:'created_at DESC'  ).paginate(:page => params[:page], :per_page => params[:page].to_i > 1 ? 7 : 8)
   end
   
   def show

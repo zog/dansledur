@@ -11,6 +11,7 @@ gem 'aws-s3'
 #gem 'omniauth', :git => 'git://github.com/intridea/omniauth.git'
 gem 'twitter'
 gem 'devise'
+gem 'will_paginate', '~> 3.0'
 #gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
 
 # Gems used only for assets and not required
@@ -23,6 +24,7 @@ end
 
 gem 'haml'
 gem "paperclip", "~> 2.4"
+gem 'rmagick', :require => 'RMagick' 
 gem 'acts-as-taggable-on', '~>2.1.0'
 
 gem 'jquery-rails'
