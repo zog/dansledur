@@ -1,0 +1,143 @@
+@import "vars", "mixins"
+
+fieldset
+  border: 0
+  margin: 0
+  padding: 0
+
+input, button, textarea
+  font: 12px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif
+  resize: none
+  -webkit-font-smoothing: antialiased
+
+input, textarea
+  color: #333
+
+textarea
+  &.resizable-on
+    overflow: hidden
+
+select
+  width: 200px
+  margin: 5px 0 3px
+
+input[type=checkbox]
+  -webkit-appearance: checkbox
+
+button[type=submit], input[type=submit]
+  cursor: pointer
+  color: #666666
+  font-weight: bold
+  border: 1px solid rgba(0,0,0,0.16) 
+  @include border-radius(3px)
+  background: #f4f4f4
+  background: -moz-linear-gradient(top, #f4f4f4 0%, #f4f4f4 49%, #eaeaea 50%, #eaeaea 100%)
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f4f4f4), color-stop(49%,#f4f4f4), color-stop(50%,#eaeaea), color-stop(100%,#eaeaea))
+  background: -webkit-linear-gradient(top, #f4f4f4 0%,#f4f4f4 49%,#eaeaea 50%,#eaeaea 100%)
+  background: -o-linear-gradient(top, #f4f4f4 0%,#f4f4f4 49%,#eaeaea 50%,#eaeaea 100%)
+  background: -ms-linear-gradient(top, #f4f4f4 0%,#f4f4f4 49%,#eaeaea 50%,#eaeaea 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f4f4', endColorstr='#eaeaea',GradientType=0 )
+  background: linear-gradient(top, #f4f4f4 0%,#f4f4f4 49%,#eaeaea 50%,#eaeaea 100%)
+  text-shadow: 0 1px 0 rgba(255,255,255,1)
+  &:hover
+    color: white
+    border-color: #c22d0c
+    background: #f36f21
+    background: -moz-linear-gradient(top, #f36f21 0%, #f36f21 49%, #f05c22 50%, #f05c22 100%)
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f36f21), color-stop(49%,#f36f21), color-stop(50%,#f05c22), color-stop(100%,#f05c22))
+    background: -webkit-linear-gradient(top, #f36f21 0%,#f36f21 49%,#f05c22 50%,#f05c22 100%)
+    background: -o-linear-gradient(top, #f36f21 0%,#f36f21 49%,#f05c22 50%,#f05c22 100%)
+    background: -ms-linear-gradient(top, #f36f21 0%,#f36f21 49%,#f05c22 50%,#f05c22 100%)
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f36f21', endColorstr='#f05c22',GradientType=0 )
+    background: linear-gradient(top, #f36f21 0%,#f36f21 49%,#f05c22 50%,#f05c22 100%)
+    text-shadow: 0 -1px 0 #c22d0c
+
+input[type=text], input[type=password], input[type=mail]
+  background: white
+  border: 1px solid rgba(0,0,0,0.16) 
+  @include border-radius(3px)
+  margin: 0
+  padding: 0
+  &:hover
+    border-color: rgba(0,0,0,0.36)
+  &:focus
+    border-color: #f36f21
+
+//containers
+
+#sign_in
+  legend
+    display: none
+  label
+    padding: 0 0 4px
+    display: block
+  .remember-me 
+    float: left
+    padding: 10px 0 0
+    label
+      display: inline
+      cursor: pointer
+      padding: 0 0 4px
+      &:hover
+        color: #333333
+  input[type=text], input[type=password], input[type=mail]
+    width: 280px
+    font-size: 16px
+    padding: 8px 9px
+    margin: 0 0 8px
+  input[type=submit]
+    font-size: 16px
+    padding: 8px 12px 9px
+    margin: 0
+    float: right
+    margin: 0 0 30px
+
+header
+  form
+    float: left
+    margin: 9px 0 0 16px
+    position: relative
+    legend, label
+      display: none
+    input[type=text]
+      background: white
+      border: 1px solid #c22d0c 
+      @include border-radius(3px)
+      margin: 0
+      padding: 6px 6px 5px 
+      width: 274px
+      @include box-shadow(0 1px 1px rgba(0,0,0,0.16) inset)
+      -webkit-background-clip: padding-box
+      color: #777
+      &:hover, &:focus
+        border-color: #a4260a
+      &:focus
+        color: #333
+    input[type=submit]
+      text-indent: -9999px
+      width: 14px
+      height: 14px
+      position: absolute
+      top: 7px
+      right: 6px
+      background: url(../images/icon-search.gif) no-repeat 0 0
+      border: 0
+      &:hover
+        background: url(../images/icon-search.gif) no-repeat 0 -14px
+
+.newsletter
+  width: 222px
+  legend, label
+    display: none
+  input
+    float: left
+    margin: 0 2px 0 0
+  input[type=text]
+    width: 164px
+    color: #777
+    padding: 6px 6px 5px
+    &:focus
+      color: #333 
+  input[type=submit]
+    width: 40px
+    padding: 5px 0 4px

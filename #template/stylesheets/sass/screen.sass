@@ -1,0 +1,327 @@
+@import "vars", "mixins"
+
+*
+  outline: none
+  -webkit-text-size-adjust: 100%
+  -webkit-appearance: none
+
+::selection
+  color: rgba(255, 255, 255, .85)
+  background: #f36f21
+
+ul li
+  list-style: none
+
+img
+  border: none
+  color: transparent
+  text-decoration: none
+
+a
+  color: #2D76B9
+  cursor: pointer
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+    img
+      text-decoration: none
+  &:focus
+    outline: 1px dotted
+
+html
+  -webkit-font-smoothing: antialiased
+
+body
+  background: white0
+  color: #666666
+  font: 12px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif
+  margin: 0
+
+h1, h2
+  font-size: 13px
+  border-bottom: 2px solid #cccccc
+  padding: 0 0 7px
+  margin: 0 0 10px
+  @include box-shadow(0 1px 0 rgba(255,255,255,1))
+
+ul + h2, div + h2, img + h2, form + h2
+  padding-top: 30px
+
+
+//containers
+
+#header
+  height: 45px
+  background: rgb(246,133,32)
+  background: -moz-linear-gradient(top, rgba(246,133,32,1) 0%, rgba(240,91,34,1) 100%)
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(246,133,32,1)), color-stop(100%,rgba(240,91,34,1)))
+  background: -webkit-linear-gradient(top, rgba(246,133,32,1) 0%,rgba(240,91,34,1) 100%)
+  background: -o-linear-gradient(top, rgba(246,133,32,1) 0%,rgba(240,91,34,1) 100%)
+  background: -ms-linear-gradient(top, rgba(246,133,32,1) 0%,rgba(240,91,34,1) 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f68520', endColorstr='#f05b22',GradientType=0 )
+  background: linear-gradient(top, rgba(246,133,32,1) 0%,rgba(240,91,34,1) 100%)
+  @include box-shadow(0 -1px 0 #c22d0c inset)
+  border-bottom: 1px solid #cccccc
+  overflow: hidden
+  header
+    width: 940px
+    margin: auto
+    display: block
+    overflow: hidden
+  .logo
+    margin: 10px 0 0
+    display: block
+    float: left
+    &:hover
+      opacity: 0.8
+  #new-post
+    float: left
+    padding: 9px 0 0 3px
+    position: relative
+    &:hover
+      span
+        display: block
+    a
+      display: block
+      text-indent: -99999px
+      height: 28px
+      width: 29px
+      background: url(../images/button-post.png) no-repeat 0 0
+    span
+      color: white
+      display: none
+      font-weight: bold
+      white-space: nowrap
+      position: absolute
+      top: 10px
+      left: 34px
+      height: 25px
+      line-height: 24px
+      padding: 0 10px 0 14px
+      @include border-radius(0 2px 2px 0)
+      background: url(../images/background-tips.png) no-repeat 0 0
+  nav
+    ul
+      margin: 10px 0 0
+      padding: 0
+      float: left
+      li
+        display: inline
+        border-left: 1px solid #de5418
+        padding: 0 8px 0 10px
+        color: white
+        font-weight: bold
+        height: 25px
+        line-height: 24px
+        &:first-child
+          padding-left: 20px
+          border: 0
+        a
+          color: white
+          text-shadow: 0 -1px 0 rgba(194,45,12,0.37)
+          &:hover, &.current
+            text-decoration: none
+            border-bottom: 2px solid white
+
+  .session-link
+    margin: 10px 0 0
+    display: block
+    color: white
+    height: 25px
+    line-height: 24px
+    float: right
+    text-shadow: 0 -1px 0 rgba(194,45,12,0.37)
+    font-size: 11px
+    strong
+      font-size: 12px
+
+#sign_in
+  width: 300px
+  margin: auto
+  padding: 30px 0 60px
+  a
+    text-align: center
+    display: block
+
+#wrap
+  background: url(../images/background-body.gif) repeat 0 0
+  padding: 30px 0 30px
+  #wrap-inner
+    width: 940px
+    margin: auto
+    overflow: hidden
+
+#footer
+  border-top: 1px solid #e3e3e3
+  padding: 26px 0 50px
+  overflow: hidden
+  #footer-inner
+    width: 940px
+    margin: auto
+    position: relative
+    .stats
+      position: absolute
+      left: 0
+      top: -4px
+      background: url(../images/background-footer-stats.gif) no-repeat 0 0
+      min-height: 42px
+      padding: 0 0 0 46px
+      strong
+        display: block
+        color: #333333
+        font-size: 24px
+        line-height: 26px
+      small
+        font-size: 12px
+    p
+      float: right
+      display: block
+      color: #999999
+      margin: 8px 0 0
+    ul
+      float: right
+      margin: 0
+      li
+        display: inline
+        border-left: 1px solid #cacaca
+        padding: 0 8px 0 10px
+        &:first-child
+          border: 0
+        &:last-child
+          padding-right: 0
+        a
+          font-weight: bold
+          color: #666666
+
+#main
+  width: 700px
+  float: left
+
+#misc
+  width: 220px
+  float: right
+  p
+    line-height: 15px
+
+// Contents
+
+ul.items
+  margin: 0
+  padding: 0
+  width: 720px
+  overflow: hidden
+  li
+    padding: 6px
+    background: white url(../images/background-thumb.gif) no-repeat 6px 6px
+    border: 1px solid rgba(0,0,0,0.20)
+    display: block
+    float: left
+    width: 206px
+    height: 132px
+    margin: 0 20px 20px 0
+    position: relative
+    a
+      position: absolute
+      top: 6px
+      left: 6px
+      padding: 12px 14px
+      width: 178px
+      height: 108px
+      background: rgba(255,255,255,0.93)
+      opacity: 0
+      text-decoration: none
+      -webkit-transition: opacity 0.2s linear
+      -moz-transition: opacity 0.2s ease-in-out
+      &:hover
+        opacity: 1
+      strong
+        font-size: 14px
+        color: #333
+      p
+        margin: 6px 0 0
+        color: #666
+        line-height: 15px
+      small
+        font-size: 11px
+        color: #999
+        position: absolute
+        left: 14px
+        bottom: 10px
+    img
+      display: block
+
+ul.tags
+  overflow: hidden
+  margin: 0
+  padding: 0
+  li
+    a
+      margin: 0 2px 2px 0
+      background: url(../images/background-tags.png) no-repeat 0 0
+      color: white
+      font-weight: bold
+      @include border-radius(0 3px 3px 0)
+      height: 23px
+      line-height: 23px
+      display: block
+      float: left
+      padding: 0 8px 0 18px
+      &:hover
+        text-decoration: none
+        opacity: 0.8
+
+#pagination
+  border-top: 2px solid #cccccc
+  @include box-shadow(0 1px 0 rgba(255,255,255,1) inset)
+  padding: 10px 0 1px
+  text-align: center
+  a
+    cursor: pointer
+    color: #666666
+    padding: 8px 12px
+    line-height: 34px
+    font-weight: bold
+    border: 1px solid rgba(0,0,0,0.16) 
+    background: #f4f4f4
+    background: -moz-linear-gradient(top, #f4f4f4 0%, #f4f4f4 49%, #eaeaea 50%, #eaeaea 100%)
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f4f4f4), color-stop(49%,#f4f4f4), color-stop(50%,#eaeaea), color-stop(100%,#eaeaea))
+    background: -webkit-linear-gradient(top, #f4f4f4 0%,#f4f4f4 49%,#eaeaea 50%,#eaeaea 100%)
+    background: -o-linear-gradient(top, #f4f4f4 0%,#f4f4f4 49%,#eaeaea 50%,#eaeaea 100%)
+    background: -ms-linear-gradient(top, #f4f4f4 0%,#f4f4f4 49%,#eaeaea 50%,#eaeaea 100%)
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f4f4', endColorstr='#eaeaea',GradientType=0 )
+    background: linear-gradient(top, #f4f4f4 0%,#f4f4f4 49%,#eaeaea 50%,#eaeaea 100%)
+    text-shadow: 0 1px 0 rgba(255,255,255,1)
+    @include border-radius(3px)
+    &:hover
+      color: white
+      border-color: #c22d0c
+      background: #f36f21
+      background: -moz-linear-gradient(top, #f36f21 0%, #f36f21 49%, #f05c22 50%, #f05c22 100%)
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f36f21), color-stop(49%,#f36f21), color-stop(50%,#f05c22), color-stop(100%,#f05c22))
+      background: -webkit-linear-gradient(top, #f36f21 0%,#f36f21 49%,#f05c22 50%,#f05c22 100%)
+      background: -o-linear-gradient(top, #f36f21 0%,#f36f21 49%,#f05c22 50%,#f05c22 100%)
+      background: -ms-linear-gradient(top, #f36f21 0%,#f36f21 49%,#f05c22 50%,#f05c22 100%)
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f36f21', endColorstr='#f05c22',GradientType=0 )
+      background: linear-gradient(top, #f36f21 0%,#f36f21 49%,#f05c22 50%,#f05c22 100%)
+      text-shadow: 0 -1px 0 #c22d0c
+      text-decoration: none
+
+.newsletter
+  p
+    margin-bottom: 4px
+
+// Flashs
+.flash
+  width: 400px
+  background: white
+  margin: auto
+  position: absolute
+  top: 46px
+  left: 50%
+  margin-left: -200px
+  padding: 10px 0
+  font-weiht: bold
+  text-align: center
+  @include border-radius(0 0 5px 5px)
+  border: 3px solid rgba(0,0,0,0.12)
+  border-top: 0

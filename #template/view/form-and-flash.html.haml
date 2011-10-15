@@ -1,0 +1,48 @@
+%p.flash= "Mauvaise combinaison de nom d'utilisateur/e-mail et mot de passe."
+
+#sign_in
+
+  %h1 Se connecter à Dans le Dur !
+
+  %form{:action => ""}
+    %fieldset 
+      %legend Connexion
+      %label Email
+      %input{:type => "mail"}
+      %label Mot de passe
+      %input{:type => "password"}
+      .remember-me
+        %input{:type => "checkbox", :id => "remember-me"}
+        %label{:for => "remember-me"} Se souvenir de moi
+      %input{:type => "submit", :value => "Se connecter"}
+
+  %a{:href => "mailto:invitation@dansledur.com"}
+    Envie de participer ? 
+    %strong Demandez une invitation !
+
+
+
+
+
+
+
+= form_for resource, :as => resource_name, :url => session_path(resource_name) do |f|
+  = field_set_tag do
+    = f.label :email, t(:email, :scope => [:activerecord, :attributes, :session]) 
+    = f.text_field :email, :tabindex => 1
+
+    - h = t(:password, :scope => [:activerecord, :attributes, :session])
+    - h << " <span>("
+    - h << link_to(t(:forgot_your_password?, :scope => [:devise, :common]), new_password_path(resource_name))
+    - h << ")</span>"
+    = f.label :password, raw(h)
+    = f.password_field :password, :tabindex => 2
+
+    .remember-me
+      = f.check_box :remember_me, :class => 'checkbox'
+      = f.label :remember_me, t(:remember_me, :scope => [:activerecord, :attributes, :session])
+
+    = f.submit t(:create, :scope => [:helper, :submit, :session])
+
+  - if flash[:notice] || flash[:alert]
+    .error= flash[:notice] || flash[:alert]
