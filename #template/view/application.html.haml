@@ -2,19 +2,17 @@
 %html
   %head
     %meta{ :'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8' }
-    %meta{ :property => 'og:image', :content => 'http://bordeauxhype.com/images/preview.png' } 
     %meta{ :name => "viewport", :content => "user-scalable=no;width=device-width" }
 
     %title Dans le Dur
-    %link{ :rel => "icon", :type => "image/png", :href => "/favicon.ico" }
-    %link{ :rel => "apple-touch-icon", :href => "/images/icons/icon-iphone.png" }
+    %link{ :rel => "icon", :type => "image/png", :href => "/images/favicon.png" }
+    %link{ :rel => "apple-touch-icon-precomposed", :href => "/images/ios-icon.png" }
     = all_stylesheet_link_tag
     = all_javascript_include_tag
     = csrf_meta_tag
     = render 'shared/ga'
 
   %body
-    =# link_to 'Déconnexion', destroy_user_session_path, :class => "logout"
     #header
       %header
         %a.logo{:href => "#"}
@@ -23,7 +21,7 @@
           %fieldset
             %legend Rechercher une image
             %label Rechercher
-            %input{:type => "text", :placeholder => "Rechercher une image"}
+            %input{:type => "text"}
             %input{:type => "submit", :value => "Rechercher"}
         #new-post
           %a.current{:href => "#"}
@@ -44,8 +42,7 @@
 
     #wrap
       #wrap-inner
-        = yeld
-       
+        = yield
 
     #footer
       #footer-inner

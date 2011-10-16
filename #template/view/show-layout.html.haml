@@ -1,0 +1,30 @@
+#main
+  .thumb-display
+    %div= image_tag "fake/thumb-original.gif", :atl => "Image Title"
+
+#misc
+  .image-infos
+    %h1 Titre
+    %small October 12, 2011
+    .social
+      = link_to "Partager !", "#", :class => "twitter"
+      = link_to "Partager !", "#", :class => "facebook"
+
+  %ul.tags
+    %li= link_to "OMG", "#"
+    %li= link_to "Sexy chick", "#"
+    %li= link_to "Nom Nom Nom", "#"
+    %li= link_to "Gif", "#"
+
+  %h2 Mais encore !
+  .more-pagination
+    .prev
+      %a{:href => "#"}
+        %span
+        = image_tag"fake/thumb-100x64.gif", :alt => "Title image"
+    .next
+      %a{:href => "#"}
+        %span
+        = image_tag"fake/thumb-100x64.gif", :alt => "Title image"
+
+  = link_to "On se la joue shuffle ?!", "#", :class => "shuffle"
