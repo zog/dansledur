@@ -1,26 +1,16 @@
-= form_tag media_path, method: :get do
-  = label :search, "Search by tag :"
-  = text_field_tag :search, params[:search]
-  = submit_tag :"Get it!", name: nil
-  - if params[:search]
-    = link_to 'Clear', '/', class: 'clear-search'
 
+%h3 Dans le Dur récents !
 %ul.media-mosaic
+  - @medias.each do |m|
+    %li{class: ['medium'] << m.tag_list}
+      = link_to image_tag(m.image.url(:thumb)), medium_path(m)
+      
+%ul.pagination
   - if @medias.current_page.to_i > 1
     %li.pagination.previous
       = link_to 'prev page', media_path(params.merge(page:  @medias.current_page.to_i - 1))
-  - @medias.each do |m|
-    %li{class: ['medium'] << m.tag_list}
-      .title= link_to m.name, medium_path(m)
-      .image
-        = link_to image_tag(m.image.url(:thumb)), medium_path(m)
   - if @medias.current_page.to_i < @medias.total_pages
     %li.pagination.next
       = link_to 'next page', media_path(params.merge(page:  @medias.current_page.to_i + 1))
 
-%p= link_to "ADD A NEW ASS-KICKING PIC - RITE NOW !", new_medium_path, class: "add-medium"
-
-%aside
-  .tags
-    - tag_cloud(Medium.tag_counts_on(:tags), %w(css1 css2 css3 css4)) do |tag, css_class| 
-      = link_to tag.name, media_path(search: tag.name), :class => css_class
+// %p= link_to "ADD A NEW ASS-KICKING PIC - RITE NOW !", new_medium_path, class: "add-medium" 

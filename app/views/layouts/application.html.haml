@@ -15,6 +15,27 @@
         - else
           = link_to "Sign in", new_user_session_path
 
+      .search
+        = form_tag media_path, method: :get do
+          = text_field_tag :search, params[:search]
+          = submit_tag
+          -# if params[:search]
+            =# link_to 'Clear', '/', class: 'clear-search'
+      %ul.nav
+        %li= link_to "Home", "/"
+        %li= link_to "Hall of Fame", "#"
+        %li.last= link_to "About", "#"
+
     - if flash[:notice]
       .notice= flash[:notice]
-    = yield
+    #main
+      = yield
+    %aside
+      = yield :aside
+      %h3 Tags Populaires!
+      .tags
+        - tag_cloud(Medium.tag_counts_on(:tags), %w(css1 css2 css3 css4)) do |tag, css_class| 
+          .tag
+            .tag-inner= link_to tag.name, media_path(search: tag.name), :class => css_class
+      .clear
+      = yield :more_aside

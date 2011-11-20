@@ -9,7 +9,7 @@ class Medium < ActiveRecord::Base
         :access_key_id => ENV['S3_KEY'],
         :secret_access_key => ENV['S3_SECRET']
       },
-      :styles => { :medium => "600x600>", :thumb => "268x150#" }
+      :styles => { :icon => "101x65#", :medium => "680x600>", :thumb => "208x131#" }
   acts_as_taggable
   attr_accessor :url
   
