@@ -34,7 +34,7 @@
       = yield :aside
       %h3 Tags Populaires!
       .tags
-        - tag_cloud(Medium.tag_counts_on(:tags), %w(css1 css2 css3 css4)) do |tag, css_class| 
+        - tag_cloud(Medium.tag_counts_on(:tags).limit(20), %w(css1 css2 css3 css4)) do |tag, css_class| 
           .tag
             .tag-inner= link_to tag.name, media_path(search: tag.name), :class => css_class
       .clear
