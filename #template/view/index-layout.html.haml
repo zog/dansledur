@@ -1,0 +1,85 @@
+#main
+  %h1 Dans le Dur récents
+  %ul.items
+    %li
+      %a{:href => "#"}
+        %strong  Best food recipe ever
+        %p Tags, list, max, characters, Tags, list, max, characters, n...
+        %small October 12, 2011
+      = image_tag "fake/thumb-206x132.png", :alt => "Title"
+    %li
+      %a{:href => "#"}
+        %strong  Best food recipe ever
+        %p Tags, list, max, characters, Tags, list, max, characters, n...
+        %small October 12, 2011
+      = image_tag "thumb-trash.gif", :alt => "Title"
+    %li
+      %a{:href => "#"}
+        %strong  Best food recipe ever
+        %p Tags, list, max, characters, Tags, list, max, characters, n...
+        %small October 12, 2011
+      = image_tag "fake/thumb-206x132.png", :alt => "Title"
+    %li
+      %a{:href => "#"}
+        %strong  Best food recipe ever
+        %p Tags, list, max, characters, Tags, list, max, characters, n...
+        %small October 12, 2011
+      = image_tag "fake/thumb-206x132.png", :alt => "Title"
+    %li
+      %a{:href => "#"}
+        %strong  Best food recipe ever
+        %p Tags, list, max, characters, Tags, list, max, characters, n...
+        %small October 12, 2011
+      = image_tag "thumb-trash.gif", :alt => "Title"
+    %li
+      %a{:href => "#"}
+        %strong  Best food recipe ever
+        %p Tags, list, max, characters, Tags, list, max, characters, n...
+        %small October 12, 2011
+      = image_tag "fake/thumb-206x132.png", :alt => "Title"
+    %li
+      %a{:href => "#"}
+        %strong  Best food recipe ever
+        %p Tags, list, max, characters, Tags, list, max, characters, n...
+        %small October 12, 2011
+      = image_tag "fake/thumb-206x132.png", :alt => "Title"
+    %li
+      %a{:href => "#"}
+        %strong  Best food recipe ever
+        %p Tags, list, max, characters, Tags, list, max, characters, n...
+        %small October 12, 2011
+      = image_tag "thumb-trash.gif", :alt => "Title"
+    %li
+      %a{:href => "#"}
+        %strong  Best food recipe ever
+        %p Tags, list, max, characters, Tags, list, max, characters, n...
+        %small October 12, 2011
+      = image_tag "fake/thumb-206x132.png", :alt => "Title"
+  #pagination
+    = link_to "« Plus anciens", "#"
+    = link_to "Plus récents »", "#"
+
+#misc
+  %h2 Tags populaires !
+  %ul.tags
+    %li= link_to "Foudefafa", "#"
+    %li= link_to "Ff grgoudefafa", "#"
+    %li= link_to "Fefafa", "#"
+    %li= link_to "Foudefafa", "#"
+    %li= link_to "Gafa gr", "#"
+    %li= link_to "Fef ergafa", "#"
+    %li= link_to "Foafa", "#"
+    %li= link_to "Gaergergfa", "#"
+
+  %h2 Hall of Fame !
+  = image_tag "ads-hof.png", :alt => "Hall of Fame"
+
+  %h2 Je veux une Newsletter !
+  .newsletter
+    %p Enregistrez-vous si vous souhaitez  recevoir les derniers DLDs !
+    %form{:action => ""}
+      %fieldset
+        %legend Inscription
+        %label Email
+        %input{:type => "text", :placeholder => "Adresse Email"}
+        %input{:type => "submit", :value => "OK"}

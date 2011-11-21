@@ -1,0 +1,67 @@
+!!! 5
+%html
+  %head
+    %meta{ :'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8' }
+    %meta{ :name => "viewport", :content => "user-scalable=no;width=device-width" }
+
+    %title Dans le Dur
+    %link{ :rel => "icon", :type => "image/png", :href => "/images/favicon.png" }
+    %link{ :rel => "apple-touch-icon-precomposed", :href => "/images/ios-icon.png" }
+    = all_stylesheet_link_tag
+    = all_javascript_include_tag
+    = csrf_meta_tag
+    = render 'shared/ga'
+
+  %body
+    #header
+      %header
+        %a.logo{:href => "#"}
+          = image_tag "logo.png", :alt => "Dans le Dur"
+        %form{:action => ""}
+          %fieldset
+            %legend Rechercher une image
+            %label Rechercher
+            %input{:type => "text"}
+            %input{:type => "submit", :value => "Rechercher"}
+        #new-post
+          %a.current{:href => "#"}
+            Nouveau Post
+          %span
+            Poster un Dans le Dur
+        %nav
+          %ul
+            %li 
+              = link_to "Accueil", "#", :class => "current"
+            %li 
+              = link_to "Hall of Fame", "#"
+            %li
+              = link_to "A propos", "#"
+        %a.session-link{:href => "#"}
+          Déjà un compte ? 
+          %strong Connectez-vous !
+
+    #wrap
+      #wrap-inner
+        = yield
+
+    #footer
+      #footer-inner
+        .stats
+          %strong 250 !
+          %small Dans le Dur partagés
+        %ul
+          %li 
+            %a{:href => "#"}
+              Demander une invitation !
+          %li
+            %a{:href => "#"}
+              A propos
+          %li
+            %a{:href => "#"}
+              Légale
+          %li
+            %a{:href => "#"}
+              @DansleDur
+        %p Copyright © 2011 Dans le Dur. Toutes les captures © leurs propriétaires respectifs. Made in sunny Bordeaux.
+
+ 

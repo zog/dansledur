@@ -1,0 +1,38 @@
+#main
+  %h1 
+    0
+    %span résultat pour :
+    Une rechercher tutututu
+  #no-result
+    = image_tag "icon-no-results.png"
+    %p Suggestions :
+    %ul
+      %li Vérifiez l’orthographe des termes de recherche.
+      %li Essayez d'autres mots.
+      %li Utilisez des mots clés plus généraux.
+      %li Soyez bon.
+
+#misc
+  %h2 Tags populaires !
+  %ul.tags
+    %li= link_to "Foudefafa", "#"
+    %li= link_to "Ff grgoudefafa", "#"
+    %li= link_to "Fefafa", "#"
+    %li= link_to "Foudefafa", "#"
+    %li= link_to "Gafa gr", "#"
+    %li= link_to "Fef ergafa", "#"
+    %li= link_to "Foafa", "#"
+    %li= link_to "Gaergergfa", "#"
+
+  %h2 Hall of Fame !
+  = image_tag "ads-hof.png", :alt => "Hall of Fame"
+
+  %h2 Je veux une Newsletter !
+  .newsletter
+    %p Enregistrez-vous si vous souhaitez  recevoir les derniers DLDs !
+    %form{:action => ""}
+      %fieldset
+        %legend Inscription
+        %label Email
+        %input{:type => "text", :placeholder => "Adresse Email"}
+        %input{:type => "submit", :value => "OK"}
