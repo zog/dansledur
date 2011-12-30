@@ -1,0 +1,9 @@
+%li
+  %a{:href => medium_path(m)}
+    %strong= m.name
+    %p= m.tags.join(", ")
+    - small = m.created_at.strftime('%d %B, %Y')
+    - small << ' - '
+    - small << "#{m.views_count} vues"
+    %small= small
+  = image_tag m.trash? ? "thumb-trash.gif" : m.image.url(:thumb), :alt => m.name

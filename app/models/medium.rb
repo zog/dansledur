@@ -2,14 +2,20 @@ require 'open-uri'
 require 'pstore'
 
 class Medium < ActiveRecord::Base
-  has_attached_file :image, 
-      :storage => :s3,
-      :bucket => 'dans-le-dur',
-      :s3_credentials => {
-        :access_key_id => ENV['S3_KEY'],
-        :secret_access_key => ENV['S3_SECRET']
-      },
-      :styles => { :icon => "101x65#", :medium => "680x600>", :thumb => "208x131#" }
+  if ENV["RAILS_ENV"] == 'development'
+    has_attached_file :image,
+        :storage => :filesystem,
+        :styles => { :icon => "100x65#", :medium => "680x600>", :thumb => "206x132#" }
+  else
+    has_attached_file :image,
+        :storage => :s3,
+        :bucket => 'dans-le-dur',
+        :s3_credentials => {
+          :access_key_id => ENV['S3_KEY'],
+          :secret_access_key => ENV['S3_SECRET']
+        },
+        :styles => { :icon => "101x65#", :medium => "680x600>", :thumb => "178x108#" }
+  end
   acts_as_taggable
   attr_accessor :url
   
@@ -57,6 +63,14 @@ class Medium < ActiveRecord::Base
   
   def previous
     Medium.where("id < ?", self.id).last
+  end
+  
+  def trash?
+    tags.include? "trash"
+  end
+  
+  def touch!
+    Medium.update_all("views_count = #{self.views_count.to_i + 1}", "id = #{self.id}")
   end
   
   protected  

@@ -54,10 +54,16 @@ Dansledur::Application.routes.draw do
   devise_for :users
   resources :media do
     collection do
-      match '/fetch', action: 'fetch'
+      get 'fetch'
+      get 'hall_of_fame'
     end
   end
+  
+  match 'about' => 'static#about'
+  match 'legals' => 'static#legals'  
+  
   root :to => 'media#index'
+  
 
   # See how all your routes lay out with "rake routes"
 

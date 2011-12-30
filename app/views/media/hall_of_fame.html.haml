@@ -1,0 +1,13 @@
+#main
+  %h1 Dans le Dur les plus populaires
+  %ul.items
+    - @medias.each do |m|
+      = render partial: 'media/compact', locals: {m: m}
+
+  #pagination
+    - if @medias.current_page.to_i > 1
+      = link_to "« Plus récents", hall_of_fame_media_path(params.merge(page:  @medias.current_page.to_i - 1))
+    - if @medias.current_page.to_i < @medias.total_pages
+      = link_to "Plus anciens »", hall_of_fame_media_path(params.merge(page:  @medias.current_page.to_i + 1))
+
+= render partial: 'media/misc'

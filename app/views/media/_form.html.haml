@@ -1,15 +1,15 @@
-%dl
-  %dt= label :name, :name
-  %dd= f.text_field :name, required: true
-  
+= field_set_tag do
+  = f.label :name
+  = f.text_field :name, required: true
+
   - if f.object.image?
-    %dt= label_tag "Picture"
-    %dd= image_tag(f.object.image.url(:medium))
+    = f.label "Picture"
+    = image_tag(f.object.image.url(:medium))
   - else
-    %dt= label :url, :url
-    %dd= f.url_field :url, required: true
+    = f.label :url
+    = f.url_field :url, required: true
   
-  %dt= label :tags, :tag_list
-  %dd= f.text_field :tag_list
-  
+  = f.label :tags
+  = f.text_field :tag_list
+
 = f.submit

@@ -52,7 +52,7 @@ button[type=submit], input[type=submit]
     background: linear-gradient(top, #f36f21 0%,#f36f21 49%,#f05c22 50%,#f05c22 100%)
     text-shadow: 0 -1px 0 #c22d0c
 
-input[type=text], input[type=password], input[type=mail]
+input[type=text], input[type=password], input[type=mail], input[type=url]
   background: white
   border: 1px solid rgba(0,0,0,0.16) 
   @include border-radius(3px)
@@ -71,6 +71,8 @@ input[type=text], input[type=password], input[type=mail]
   label
     padding: 0 0 4px
     display: block
+    a
+      display: inline
   .remember-me 
     float: left
     padding: 10px 0 0

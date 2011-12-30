@@ -1,0 +1,18 @@
+#misc
+  %h2 Tags populaires !
+  %ul.tags
+    - tag_cloud(Medium.tag_counts_on(:tags).limit(20), %w(css1 css2 css3 css4)) do |tag, css_class| 
+      %li= link_to tag.name, media_path(search: tag.name)
+
+  %h2 Hall of Fame !
+  = image_tag "ads-hof.png", :alt => "Hall of Fame"
+
+  / %h2 Je veux une Newsletter !
+  /   .newsletter
+  /     %p Enregistrez-vous si vous souhaitez  recevoir les derniers DLDs !
+  /     %form{:action => ""}
+  /       %fieldset
+  /         %legend Inscription
+  /         %label Email
+  /         %input{:type => "text", :placeholder => "Adresse Email"}
+  /         %input{:type => "submit", :value => "OK"}

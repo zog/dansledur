@@ -1,41 +1,73 @@
-!!! html
+!!! 5
 %html
   %head
-    %title= "Dansledur"
-    = stylesheet_link_tag "application"
-    = javascript_include_tag "application"
-    = csrf_meta_tags 
+    %meta{ :'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8' }
+    %meta{ :name => "viewport", :content => "user-scalable=no;width=device-width" }
+
+    %title Dans le Dur
+    %link{ :rel => "icon", :type => "image/png", :href => "/images/favicon.png" }
+    %link{ :rel => "apple-touch-icon-precomposed", :href => "/images/ios-icon.png" }
+    = stylesheet_link_tag :application
+    = javascript_include_tag :application
+    = csrf_meta_tag
+    =# render 'shared/ga'
 
   %body
-    %header
-      %h1= link_to "Dans le dur", '/'
-      .login
+    #header
+      %header
+        %a.logo{:href => "/"}
+          = image_tag "logo.png", :alt => "Dans le Dur"
+        %form{:action => "/"}
+          %fieldset
+            %legend Rechercher une image
+            %label Rechercher
+            %input{type: "text", name: "search"}
+            %input{type: "submit", :value => "Rechercher"}
+        #new-post
+          %a.current{:href => new_medium_path}
+            Nouveau Post
+          %span
+            Poster un Dans le Dur
+        %nav
+          %ul
+            %li 
+              = link_to "Accueil", "/", :class => (params[:controller] == "media" && params[:action] == "index") ? "current" : ""
+            %li 
+              = link_to "Hall of Fame", [:hall_of_fame, :media], :class => (params[:controller] == "media" && params[:action] == "hall_of_fame") ? "current" : ""
+            %li
+              = link_to "A propos", "/about", :class => (params[:controller] == "static" && params[:action] == "about") ? "current" : ""
         - if user_signed_in?
-          = link_to "Sign out", destroy_user_session_path, method: :delete
-        - else
-          = link_to "Sign in", new_user_session_path
+          %a.session-link{href: destroy_user_session_path, :'data-method' => :delete, :'data-confirm' => t('are_you_sure', scope: [:messages])}
+            %strong Se déconnecter
+        -else
+          %a.session-link{:href => new_user_session_path}
+            Déjà un compte ? 
+            %strong Connectez-vous !
 
-      .search
-        = form_tag media_path, method: :get do
-          = text_field_tag :search, params[:search]
-          = submit_tag
-          -# if params[:search]
-            =# link_to 'Clear', '/', class: 'clear-search'
-      %ul.nav
-        %li= link_to "Home", "/"
-        %li= link_to "Hall of Fame", "#"
-        %li.last= link_to "About", "#"
+    #wrap
+      - if flash[:notice] || flash[:alert]
+        .flash= flash[:notice] || flash[:alert]
+      #wrap-inner
+        = yield
 
-    - if flash[:notice]
-      .notice= flash[:notice]
-    #main
-      = yield
-    %aside
-      = yield :aside
-      %h3 Tags Populaires!
-      .tags
-        - tag_cloud(Medium.tag_counts_on(:tags).limit(20), %w(css1 css2 css3 css4)) do |tag, css_class| 
-          .tag
-            .tag-inner= link_to tag.name, media_path(search: tag.name), :class => css_class
-      .clear
-      = yield :more_aside
+    #footer
+      #footer-inner
+        .stats
+          %strong= "#{Medium.count} !"
+          %small Dans le Dur partagés
+        %ul
+          %li 
+            %a{:href => "mailto:invitation@dansledur.com"}
+              Demander une invitation !
+          %li
+            %a{:href => "/about"}
+              A propos
+          %li
+            %a{:href => "/legals"}
+              Légale
+          %li
+            %a{:href => "http://twitter.com/#!/Dansledur", target: "_blank"}
+              @DansleDur
+        %p Copyright © 2011 Dans le Dur. Toutes les captures © leurs propriétaires respectifs. Made in sunny Bordeaux.
+
+ 

@@ -3,3 +3,13 @@
 
 en:
   hello: "Hello world"
+  messages:
+    are_you_sure: Are you sure ?
+  helper:
+    submit:
+      session:
+        create: Sign in
+  activerecord:
+    attributes:
+      session:
+        password: Password

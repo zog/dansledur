@@ -1,14 +1,18 @@
 class MediaController < ApplicationController
-  before_filter :fetch_medium, except: [:index, :new, :create, :fetch]
+  before_filter :fetch_medium, except: [:index, :new, :create, :fetch, :hall_of_fame]
   
   def index
     @medias = Medium
     @search = params[:search]
-    @medias = @medias.tagged_with(@search.split(' '), any: true) if @search.present?
     @medias = @medias.order(:'created_at DESC'  ).paginate(:page => params[:page], :per_page => 9)
   end
   
+  def hall_of_fame
+    @medias = Medium.order(:'views_count DESC'  ).paginate(:page => params[:page], :per_page => 9)
+  end
+  
   def show
+    @medium.touch!
   end
   
   def update
@@ -45,6 +49,6 @@ class MediaController < ApplicationController
   
 protected
   def fetch_medium
-    @medium = Medium.find(params[:id])
+    @medium = Medium.find(params[:id]) rescue not_found
   end
 end
