@@ -57,6 +57,9 @@ Dansledur::Application.routes.draw do
       get 'fetch'
       get 'hall_of_fame'
     end
+    member do
+      get :delete
+    end
   end
   
   match 'about' => 'static#about'

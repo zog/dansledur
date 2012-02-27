@@ -1,6 +1,6 @@
 class MediaController < ApplicationController
   before_filter :fetch_medium, except: [:index, :new, :create, :fetch, :hall_of_fame]
-  
+  before_filter :authenticate!, only: [:update, :edit, :new, :create, :destroy]
   def index
     @medias = Medium
     @search = params[:search]
@@ -28,7 +28,6 @@ class MediaController < ApplicationController
   end
   
   def new
-    denied unless current_user
     @medium = Medium.new
   end
   
@@ -43,7 +42,7 @@ class MediaController < ApplicationController
   def edit
   end
   
-  def destroy
+  def delete
     if @medium
       @medium.destroy
       redirect_to(media_path, notice: "Media destroyed, Feel my Power ! MWAHAHAHAHA") && return
@@ -52,6 +51,10 @@ class MediaController < ApplicationController
   end
   
 protected
+  def authenticate!
+    denied unless current_user    
+  end
+
   def fetch_medium
     @medium = Medium.find(params[:id]) rescue not_found
   end

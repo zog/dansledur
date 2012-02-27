@@ -5,7 +5,7 @@ class Medium < ActiveRecord::Base
   if ENV["RAILS_ENV"] == 'development'
     has_attached_file :image,
         :storage => :filesystem,
-        :styles => { :icon => "100x65#", :medium => "680x600>", :thumb => "206x132#" }
+        :styles => { :icon => "100x64#", :medium => "680x600>", :thumb => "206x132#" }
   else
     has_attached_file :image,
         :storage => Rails.env.production? ? :s3 : :filesystem,
@@ -14,7 +14,7 @@ class Medium < ActiveRecord::Base
           :access_key_id => ENV['S3_KEY'],
           :secret_access_key => ENV['S3_SECRET']
         },
-        :styles => { :icon => "100x65#", :medium => "680x600>", :thumb => "206x132#" }
+        :styles => { :icon => "100x64#", :medium => "680x600>", :thumb => "206x132#" }
   end
   acts_as_taggable
   attr_accessor :url
