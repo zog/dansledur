@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   layout 'application'
   
   def not_found
-    render 'shared/not_found', layout: nil
+    render 'shared/not_found', layout: nil, status: 404
+  end
+
+  def denied
+    render 'shared/denied', layout: nil, status: 401
   end
 end

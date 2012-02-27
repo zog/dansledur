@@ -21,10 +21,10 @@
           %fieldset
             %legend Rechercher une image
             %label Rechercher
-            %input{type: "text", name: "search"}
+            %input{type: "text", name: "search", value: params[:search]}
             %input{type: "submit", :value => "Rechercher"}
         #new-post
-          %a.current{:href => new_medium_path}
+          %a.current{:href => current_user ? new_medium_path : new_user_session_path}
             Nouveau Post
           %span
             Poster un Dans le Dur

@@ -4,6 +4,7 @@ class MediaController < ApplicationController
   def index
     @medias = Medium
     @search = params[:search]
+    @medias = @medias.tagged_with(@search.split(',')) unless @search.nil?
     @medias = @medias.order(:'created_at DESC'  ).paginate(:page => params[:page], :per_page => 9)
   end
   
@@ -25,6 +26,7 @@ class MediaController < ApplicationController
   end
   
   def new
+    denied unless current_user
     @medium = Medium.new
   end
   
