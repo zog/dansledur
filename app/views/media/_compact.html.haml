@@ -6,4 +6,4 @@
     - small << ' - '
     - small << "#{m.views_count} vues"
     %small= small
-  = image_tag m.trash? ? "thumb-trash.gif" : m.image.url(:thumb), :alt => m.name
+  = image_tag m.filtered_thumb_url, :alt => m.name

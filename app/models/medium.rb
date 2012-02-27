@@ -8,7 +8,7 @@ class Medium < ActiveRecord::Base
         :styles => { :icon => "100x65#", :medium => "680x600>", :thumb => "206x132#" }
   else
     has_attached_file :image,
-        :storage => :s3,
+        :storage => Rails.env.production? ? :s3 : :filesystem,
         :bucket => 'dans-le-dur',
         :s3_credentials => {
           :access_key_id => ENV['S3_KEY'],
@@ -42,8 +42,6 @@ class Medium < ActiveRecord::Base
           tags = m.text.scan(/#(\w+)/).flatten
           name = m.text
           urls = m.text.scan(/((https?:\/\/)?[\w\.\-]+\.\w{2,5}(\/[\w.\-\_]+)*)/).map(&:first)
-          p m.text
-          p urls
           urls.each do |url|
             name = name.gsub(url, "")
           end
@@ -69,7 +67,7 @@ class Medium < ActiveRecord::Base
     end
     a[0..limit]
   end
-  
+
   def next
     Medium.where("id > ?", self.id).first
   end  
@@ -79,7 +77,11 @@ class Medium < ActiveRecord::Base
   end
   
   def trash?
-    tags.include? "trash"
+    tag_list.include? "trash"
+  end
+
+  def filtered_thumb_url
+    self.trash? ? "thumb-trash.gif" : image.url(:thumb)
   end
   
   def touch!
