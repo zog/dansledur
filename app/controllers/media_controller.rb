@@ -16,6 +16,9 @@ class MediaController < ApplicationController
   
   def show
     @medium.touch!
+    if(params[:fullscreen])
+      render template: 'media/fullscreen', layout: false
+    end
   end
   
   def update

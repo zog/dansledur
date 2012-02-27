@@ -55,6 +55,7 @@
           %span
           = image_tag @medium.next.image.url(:icon), :alt => @medium.next.name
 
+  = link_to "Fullscreen", medium_path(@medium, fullscreen: 1), :class => "shuffle fullscreen positive"
   = link_to "On se la joue shuffle ?!", medium_path(Medium.order('Random()').last), :class => "shuffle"
   - if current_user
     = link_to "Modifier", edit_medium_path(@medium), :class => "shuffle"

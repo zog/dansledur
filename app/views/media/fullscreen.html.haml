@@ -1,0 +1,7 @@
+%head
+  = stylesheet_link_tag :application
+
+%body#fullscreen{style: "background-image: url(#{@medium.image.url})"}
+  %table{height: "100%", width: "100%"}
+    %tr
+      %td.message= params[:message]

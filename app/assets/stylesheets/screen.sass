@@ -421,7 +421,7 @@ a.shuffle
   background: linear-gradient(top, #f4f4f4 0%,#f4f4f4 49%,#eaeaea 50%,#eaeaea 100%)
   text-shadow: 0 1px 0 rgba(255,255,255,1)
   @include border-radius(3px)
-  &:hover
+  &:hover, &.positive
     color: white
     border-color: #c22d0c
     background: #f36f21
@@ -529,3 +529,17 @@ a.shuffle
     margin: auto
     min-width: 50%
     min-height: 50%
+
+#fullscreen
+  .message
+    width: 80%
+    height: 100%
+    text-align: center
+    display: table-cell
+    vertical-align: middle
+    margin: auto
+    font-size: 10em
+    font-weight: bold
+    color: white
+    text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black
+    letter-spacing: 10px
