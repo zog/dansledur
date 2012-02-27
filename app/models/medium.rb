@@ -20,6 +20,8 @@ class Medium < ActiveRecord::Base
   attr_accessor :url
   
   validates :name, presence: true
+
+  before_create {|m| m.views_count = 0 }
   
   def url= url
     self.image = self.class.download(url) if url.present?
