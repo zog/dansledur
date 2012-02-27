@@ -56,6 +56,19 @@ class Medium < ActiveRecord::Base
       end
     end.count
   end
+
+  def self.suggestions_for search, limit = 4
+    suggestions = Hash.new{|h, k| h[k] = []}
+    ActsAsTaggableOn::Tag.all.each do |t|
+      suggestions[Text::Levenshtein.distance(search, t.name)] << t.name
+    end
+    suggestions = Hash[suggestions.sort]
+    a = []
+    while a.count < limit
+      a += suggestions.delete(suggestions.keys.first)
+    end
+    a[0..limit]
+  end
   
   def next
     Medium.where("id > ?", self.id).first

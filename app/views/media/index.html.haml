@@ -1,8 +1,28 @@
 #main
-  %h1 Dans le Dur récents
-  %ul.items
-    - @medias.each do |m|
-      = render partial: 'media/compact', locals: {m: m}
+  - if @search
+    %h1 
+      = @medias.count
+      %span résultat(s) pour :
+      = @search
+  - else
+    %h1 Dans le Dur récents
+  
+  - if @medias.count.zero?
+    #no-result
+      = image_tag "icon-no-results.png"
+      %p 
+        Suggestions :
+        = @suggestions.map{|s| link_to(s, media_path(search: s))}.join(', ').html_safe
+      %ul
+        %li Vérifiez l’orthographe des termes de recherche.
+        %li Essayez d'autres mots.
+        %li Utilisez des mots clés plus généraux.
+        %li Soyez bon.
+  - else
+  
+    %ul.items
+      - @medias.each do |m|
+        = render partial: 'media/compact', locals: {m: m}
       
   #pagination
     - if @medias.current_page.to_i > 1

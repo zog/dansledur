@@ -6,6 +6,8 @@ class MediaController < ApplicationController
     @search = params[:search]
     @medias = @medias.tagged_with(@search.split(',')) unless @search.nil?
     @medias = @medias.order(:'created_at DESC'  ).paginate(:page => params[:page], :per_page => 9)
+    @suggestions = []
+    @suggestions = Medium.suggestions_for(@search) if @search && @medias.count.zero?
   end
   
   def hall_of_fame

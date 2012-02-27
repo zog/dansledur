@@ -11,6 +11,7 @@ gem 'aws-s3'
 #gem 'omniauth', :git => 'git://github.com/intridea/omniauth.git'
 gem 'twitter'
 gem 'devise'
+gem 'text'
 gem 'will_paginate', '~> 3.0'
 #gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
 
