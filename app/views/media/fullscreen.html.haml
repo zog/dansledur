@@ -5,3 +5,9 @@
   %table{height: "100%", width: "100%"}
     %tr
       %td.message= params[:message]
+  #toolbar
+    %form{action: medium_path(@medium)}
+      %label Ton message :
+      %input{type: :hidden, name: :fullscreen, value: 1}
+      %input{type: :text, name: :message, value: params[:message]}
+      %input{type: :submit, value: "GO"}
