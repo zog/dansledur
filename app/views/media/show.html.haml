@@ -44,16 +44,20 @@
 
   %h2 Mais encore !
   .more-pagination
-    - if @medium.previous
-      .prev
-        %a{:href => medium_path(@medium.previous)}
+    // XXX class names mismatch
+    - _next = @medium.next
+    .prev{class: _next.present? ? "" : "empty"}
+      - if _next
+        %a{:href => medium_path(_next)}
           %span
-          = image_tag @medium.previous.image.url(:icon), :alt => @medium.previous.name
-    .next
-      - if @medium.next
-        %a{:href => medium_path(@medium.next)}
+          = image_tag _next.image.url(:icon), :alt => _next.name
+    
+    - _prev = @medium.previous
+    .next{class: _prev.present? ? "" : "empty"}
+      - if _prev
+        %a{:href => medium_path(_prev)}
           %span
-          = image_tag @medium.next.image.url(:icon), :alt => @medium.next.name
+          = image_tag _prev.image.url(:icon), :alt => _prev.name
 
   = link_to "Fullscreen", medium_path(@medium, fullscreen: 1), :class => "shuffle fullscreen positive"
   = link_to "On se la joue shuffle ?!", medium_path(Medium.order('Random()').last), :class => "shuffle"
