@@ -1,10 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  unless  ActionController::Base.consider_all_requests_local
+  if Rails.env.production?
+    p "OK"
     rescue_from Exception, :with => :not_found
+    rescue_from ActionController::RoutingError, :with => :not_found
   end
-
 
   layout 'application'
   
