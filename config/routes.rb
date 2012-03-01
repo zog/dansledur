@@ -65,7 +65,7 @@ Dansledur::Application.routes.draw do
   match 'about' => 'static#about'
   match 'legals' => 'static#legals'  
   
-  match '/:anything', :to => "static#not_found", :constraints => { :anything => /.*/ }
+  match '/:anything', :to => "static#not_found", :constraints => { :anything => /.+/ }
 
   root :to => 'media#index'
   
