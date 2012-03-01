@@ -5,7 +5,8 @@
       %li= link_to tag.name, media_path(search: tag.name)
 
   %h2 Hall of Fame !
-  = image_tag "ads-hof.png", :alt => "Hall of Fame"
+  = link_to image_tag("ads-hof.png", :alt => "Hall of Fame"), [:hall_of_fame, :media]
+
 
   / %h2 Je veux une Newsletter !
   /   .newsletter
