@@ -22,6 +22,9 @@
     %tr
       %td.message= params[:message]
   #toolbar
+    .icon
+      %p
+        =link_to "home", "/"
     %form{action: medium_path(@medium)}
       %label Ton message :
       %input{type: :hidden, name: :fullscreen, value: 1}
@@ -32,4 +35,4 @@
         URL raccourcie: 
         %br
         = link_to @short_url, @short_url
-      %p= link_to @short_url, @short_url, class: "paste"
+      %p= link_to @short_url, @short_url, class: "paste", alt: "copier l'url"

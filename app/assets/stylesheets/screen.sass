@@ -541,7 +541,7 @@ a.shuffle
       height: 0
       clear: both
       visibility: hidden
-    background: black url(/images/favicon.png) no-repeat 12px 12px
+    background: black
     border-top: 1px solid #999
     padding: 3px 0px 5px 0px 
     position: fixed
@@ -549,9 +549,22 @@ a.shuffle
     width: 100%
     div
       float: right
+      &.icon
+        float: left
+        a
+          background: url(/images/favicon.png)
+          display: block
+          width: 16px
+          height: 16px
+          margin: 6px 10px 7px 15px
+          text-indent: -1000px
+          overflow: hidden
+        
       p
         margin: 4px 0 0 0
         float: left
+        a 
+          color: white
       .paste
         margin: 7px 10px 7px 20px
         text-indent: -1000px
@@ -561,7 +574,7 @@ a.shuffle
         width: 16px
         height: 16px
     form
-      margin: 3px 0 0 35px
+      margin: 3px 0 0 3px
       input[type=text]
         width: 400px
         padding: 5px
