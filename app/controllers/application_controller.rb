@@ -14,10 +14,10 @@ class ApplicationController < ActionController::Base
   end
 
   def denied
-    if(params[:anything] && params[:anything] =~ /\.ico$/)
-      render nothing: true
-      return
-    end
+    # if(params[:anything] && params[:anything] =~ /\.ico$/)
+    #   render nothing: true
+    #   return
+    # end
     render 'shared/denied', layout: nil, status: 401
   end
 end
