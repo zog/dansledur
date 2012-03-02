@@ -1,7 +1,6 @@
 Dansledur::Application.configure do
-  # Settings specified here will take precedence over those in config/application.rb
-  config.middleware.use Rack::GoogleAnalytics, :tracker => 'UA-29670145-1'
-  
+  # Settings specified here will take precedence over those in config/application.rbappli
+
   # Code is not reloaded between requests
   config.cache_classes = true
 
