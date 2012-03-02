@@ -18,7 +18,7 @@ class MediaController < ApplicationController
     @medium.touch!
     if(params[:fullscreen])
       bitly = Bitly.new(BITLY_USERNAME, BITLY_API_KEY)
-      @short_url = bitly.shorten(medium_path(params)) rescue "http://bit.ly/xBhks9"
+      @short_url = bitly.shorten("http://dansledur.com" + medium_path(params)).shorten
       render template: 'media/fullscreen', layout: false
     end
   end
