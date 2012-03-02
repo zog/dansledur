@@ -1,6 +1,7 @@
 %head
   = stylesheet_link_tag :application
   %title Dans le Dur
+  %meta{property: "og:image", content: @medium.image.url}
   %link{ :rel => "icon", :type => "image/png", :href => "/images/favicon.png" }
   = javascript_include_tag :application    
   :javascript
