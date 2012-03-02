@@ -2,7 +2,19 @@
   = stylesheet_link_tag :application
   %title Dans le Dur
   %link{ :rel => "icon", :type => "image/png", :href => "/images/favicon.png" }
-    
+  = javascript_include_tag :application    
+  :javascript
+    var clip
+    $(document).ready(function(){
+      ZeroClipboard.setMoviePath( '/assets/zeroclipboard/ZeroClipboard10.swf' );
+      var clip = new ZeroClipboard.Client()
+      $(".paste").each(function(){ 
+        //$(this).click(copyclip) 
+        clip.setText(this.href)
+        clip.glue(this)
+      })
+      clip.addEventListener( 'onComplete', function(){alert("URL copiée dans le presse-papier !")} );
+    })
 
 %body#fullscreen{style: "background-image: url(#{@medium.image.url})"}
   %table{height: "100%", width: "100%"}
@@ -14,3 +26,9 @@
       %input{type: :hidden, name: :fullscreen, value: 1}
       %input{type: :text, name: :message, value: params[:message]}
       %input{type: :submit, value: "GO"}
+    .short-url
+      %p
+        URL raccourcie: 
+        %br
+        = link_to @short_url, @short_url
+      %p= link_to @short_url, @short_url, class: "paste"

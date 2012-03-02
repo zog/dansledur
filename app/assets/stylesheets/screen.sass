@@ -535,11 +535,33 @@ a.shuffle
 
 #fullscreen
   #toolbar
-    background-color: black
+    &:after
+      content: "."
+      display: block
+      height: 0
+      clear: both
+      visibility: hidden
+    background: black url(/images/favicon.png) no-repeat 12px 12px
     border-top: 1px solid #999
-    padding: 5px 20px
+    padding: 3px 0px 5px 0px 
+    position: fixed
+    bottom: 0
+    width: 100%
+    div
+      float: right
+      p
+        margin: 4px 0 0 0
+        float: left
+      .paste
+        margin: 7px 10px 7px 20px
+        text-indent: -1000px
+        overflow: hidden
+        background: url(/images/paste.gif)
+        display: block
+        width: 16px
+        height: 16px
     form
-      margin: 0
+      margin: 3px 0 0 35px
       input[type=text]
         width: 400px
         padding: 5px
@@ -547,6 +569,8 @@ a.shuffle
         background-color: #ddd
       input[type=submit]
         padding: 4px 5px 5px
+      float: left
+    
   .message
     width: 80%
     height: 100%
