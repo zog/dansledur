@@ -7,6 +7,7 @@ gem 'rails', '3.2.0'
 
 gem 'pg'
 gem 'aws-s3'
+gem 'aws-sdk'
 #gem 'omniauth', :git => 'git://github.com/intridea/omniauth.git'
 gem 'twitter', '2.0.2'
 gem 'devise'
