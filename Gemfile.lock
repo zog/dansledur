@@ -37,11 +37,6 @@ GEM
       builder
       mime-types
       xml-simple
-    aws-sdk (1.2.6)
-      httparty (~> 0.7)
-      json (~> 1.4)
-      nokogiri (>= 1.4.4)
-      uuidtools (~> 2.1)
     bcrypt-ruby (3.0.1)
     bitly (0.7.0)
       crack (>= 0.1.4)
@@ -88,12 +83,11 @@ GEM
     multi_json (1.1.0)
     multi_xml (0.4.1)
     multipart-post (1.1.5)
-    nokogiri (1.5.0)
     oauth2 (0.5.2)
       faraday (~> 0.7)
       multi_json (~> 1.0)
     orm_adapter (0.0.6)
-    paperclip (2.7.0)
+    paperclip (2.4.2)
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
@@ -155,7 +149,6 @@ GEM
     uglifier (1.2.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
-    uuidtools (2.1.2)
     warden (1.1.1)
       rack (>= 1.0)
     will_paginate (3.0.3)
@@ -166,14 +159,13 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on (~> 2.1.0)
-  aws-s3
-  aws-sdk
+  aws-s3 (= 0.6.2)
   bitly
   coffee-rails (~> 3.2.0)
   devise
   haml
   jquery-rails
-  paperclip (~> 2.4)
+  paperclip (= 2.4.2)
   pg
   rack-google-analytics
   rails (= 3.2.0)

@@ -6,8 +6,8 @@ gem 'rails', '3.2.0'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-gem 'aws-s3'
-gem 'aws-sdk'
+gem 'aws-s3', '0.6.2'
+#gem 'aws-sdk'
 #gem 'omniauth', :git => 'git://github.com/intridea/omniauth.git'
 gem 'twitter', '2.0.2'
 gem 'devise'
@@ -26,7 +26,7 @@ group :assets do
 end
 
 gem 'haml'
-gem "paperclip", "~> 2.4"
+gem "paperclip", "2.4.2"
 gem 'rmagick', :require => 'RMagick' 
 gem 'acts-as-taggable-on', '~>2.1.0'
 
