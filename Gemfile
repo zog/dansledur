@@ -5,7 +5,6 @@ gem 'rails', '3.2.0'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 gem 'pg'
 gem 'aws-s3'
 #gem 'omniauth', :git => 'git://github.com/intridea/omniauth.git'
@@ -40,6 +39,10 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+group :development do
+  gem 'sqlite3'
+end
 
 group :test do
   # Pretty printed test output
