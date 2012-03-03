@@ -1,30 +1,3 @@
-/ .medium
-/   .inner
-/     = link_to image_tag(@medium.image.url(:medium)), @medium.image.url 
-/ 
-/ - content_for :aside do
-/   %h2
-/     = @medium.name
-/     - if user_signed_in?
-/       %span.tools
-/         = link_to "Edit", edit_medium_path(@medium)
-/         = " - "
-/         = link_to "Delete", medium_path(@medium), method: :delete
-/     
-/   .date
-/     = @medium.created_at.strftime "le %d %B %Y"
-/ - content_for :more_aside do
-/   %h3 Mais encore !
-/   %ul.pagination
-/     - if @medium.previous
-/       %li= link_to image_tag(@medium.previous.image.url(:icon)), medium_path(@medium.previous)
-/     - if @medium.next
-/       %li= link_to image_tag(@medium.next.image.url(:icon)), medium_path(@medium.next)
-/   %p.shuffle
-/     =link_to "On se la joue SHUFFLE ?", medium_path(Medium.order('RANDOM()').first)
-/   
-/       
-
 #main
   .thumb-display
     %div= image_tag @medium.image.url, :alt => @medium.name

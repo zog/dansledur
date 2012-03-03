@@ -71,11 +71,11 @@ class Medium < ActiveRecord::Base
   end
 
   def next
-    Medium.where("id > ?", self.id).first
+    Medium.order(:id).where("id > ?", self.id).first
   end  
   
   def previous
-    Medium.where("id < ?", self.id).last
+    Medium.order(:id).where("id < ?", self.id).last
   end
   
   def trash?
