@@ -7,7 +7,8 @@
     %h1= @medium.name
     %small= @medium.created_at.strftime('%B %d, %Y')
     .social
-      = link_to "Partager !", "#", :class => "twitter"
+      %script{type: "text/javascript", src: "//platform.twitter.com/widgets.js"}
+      = link_to "Partager !", "https://twitter.com/intent/tweet?url=http://dansledur.com#{url_for(params)}&text=“#{@medium.name}” sur DansLeDur.com", :class => "twitter"
       / <fb:share-button href="http:" type="button"></fb:share-button>
       = link_to "Partager !", "#", :class => "facebook"
 
