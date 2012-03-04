@@ -26,6 +26,9 @@ group :assets do
   gem 'uglifier'
 end
 
+gem 'dalli'
+gem 'rack-cache'
+
 gem 'haml'
 gem "paperclip", "2.4.2"
 gem 'rmagick', :require => 'RMagick' 

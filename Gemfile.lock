@@ -52,6 +52,7 @@ GEM
       execjs
     coffee-script-source (1.2.0)
     crack (0.3.1)
+    dalli (1.1.5)
     devise (2.0.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -168,11 +169,13 @@ DEPENDENCIES
   aws-s3 (= 0.6.2)
   bitly
   coffee-rails (~> 3.2.0)
+  dalli
   devise
   haml
   jquery-rails
   paperclip (= 2.4.2)
   pg
+  rack-cache
   rack-google-analytics
   rails (= 3.2.0)
   rmagick

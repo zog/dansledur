@@ -46,6 +46,11 @@ module Dansledur
     config.assets.version = '1.0'
 
     config.assets.initialize_on_precompile = false
+    config.cache_store = :dalli_store
+
+    config.middleware.use Rack::Cache,
+      :metastore => "memcached://#{ENV['MEMCACHE_SERVERS']}/meta",
+      :entitystore => "memcached://#{ENV['MEMCACHE_SERVERS']}/body"
     
     Twitter.configure do |config|
       config.consumer_key = "015ZZmGe0nYga8ZG31zLXw"
