@@ -12,4 +12,4 @@ class Mutex
   end
   alias_method :lock_without_hack, :lock
   alias_method :lock, :lock_with_hack
-end
+end 
