@@ -8,7 +8,8 @@
     %small= @medium.created_at.strftime('%B %d, %Y')
     .social
       = link_to "Partager !", "#", :class => "twitter"
-      = link_to "Partager !", "#", :class => "facebook"
+      <fb:share-button href="http:" type="button"></fb:share-button>
+      =# link_to "Partager !", "#", :class => "facebook"
 
   %ul.tags
     - @medium.tags.each do |tag|
