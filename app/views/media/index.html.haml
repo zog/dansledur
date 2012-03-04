@@ -26,8 +26,8 @@
       
   #pagination
     - if @medias.current_page.to_i > 1
-      = link_to "« Plus récents", media_path(params.merge(page:  @medias.current_page.to_i - 1))
+      = link_to "« Plus récents", media_path(params.merge(page:  @medias.current_page.to_i - 1)), id: 'prev_page'
     - if @medias.current_page.to_i < @medias.total_pages
-      = link_to "Plus anciens »", media_path(params.merge(page:  @medias.current_page.to_i + 1))
+      = link_to "Plus anciens »", media_path(params.merge(page:  @medias.current_page.to_i + 1)), id: 'next_page'
 
 = render partial: 'media/misc'

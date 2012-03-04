@@ -8,3 +8,17 @@
 //= require jquery_ujs
 //= require fb
 //= require_tree .
+
+$(document).ready(function(){
+  if($('#next_page')[0]){
+    shortcut.add("N",function() {
+      document.location = $('#next_page')[0].href
+    });
+  }
+  if($('#prev_page')[0]){
+    shortcut.add("P",function() {
+      document.location = $('#prev_page')[0].href
+    });
+  }
+})
+

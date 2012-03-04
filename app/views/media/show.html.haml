@@ -23,14 +23,14 @@
     - _next = @medium.next
     .prev{class: _next.present? ? "" : "empty"}
       - if _next
-        %a{:href => medium_path(_next)}
+        %a#prev_page{:href => medium_path(_next)}
           %span
           = image_tag _next.image.url(:icon), :alt => _next.name
     
     - _prev = @medium.previous
     .next{class: _prev.present? ? "" : "empty"}
       - if _prev
-        %a{:href => medium_path(_prev)}
+        %a#next_page{:href => medium_path(_prev)}
           %span
           = image_tag _prev.image.url(:icon), :alt => _prev.name
 
