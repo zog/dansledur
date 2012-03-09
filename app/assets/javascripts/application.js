@@ -20,8 +20,5 @@ $(document).ready(function(){
       document.location = $('#prev_page')[0].href
     });
   }
-  shortcut.add("i",function() {
-      document.location = '/'
-    });
 })
 
