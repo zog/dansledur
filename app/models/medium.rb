@@ -25,7 +25,9 @@ class Medium < ActiveRecord::Base
   before_create {|m| m.views_count = 0 }
   
   def url= url
-    self.image = self.class.download(url) if url.present?
+    io = self.class.download(url) if url.present?
+    self.image = io
+    io.close
   end
   
   def self.fetch_from_twitter
