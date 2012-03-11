@@ -10,7 +10,7 @@ class Medium < ActiveRecord::Base
     has_attached_file :image,
         :storage => Rails.env.production? ? :s3 : :filesystem,
         :bucket => 'dans-le-dur',
-        :s3_alias_url => 'cdn.dansledur.com',
+        #:s3_alias_url => 'cdn.dansledur.com',
         :s3_credentials => {
           :access_key_id => ENV['S3_KEY'],
           :secret_access_key => ENV['S3_SECRET']
@@ -19,17 +19,18 @@ class Medium < ActiveRecord::Base
   end
   acts_as_taggable
   attr_accessor :url
-  
+
   validates :name, presence: true
 
   before_create {|m| m.views_count = 0 }
-  
+
   def url= url
-    io = self.class.download(url) if url.present?
+    return unless url.present?
+    io = self.class.download(url)
     self.image = io
     io.close
   end
-  
+
   def self.fetch_from_twitter
       last_id = Setting[:last_mention_id].try :to_i
       if last_id
@@ -75,12 +76,12 @@ class Medium < ActiveRecord::Base
 
   def next
     Medium.order(:id).where("id > ?", self.id).first
-  end  
-  
+  end
+
   def previous
     Medium.order(:id).where("id < ?", self.id).last
   end
-  
+
   def trash?
     tag_list.include? "trash"
   end
@@ -88,11 +89,11 @@ class Medium < ActiveRecord::Base
   def filtered_thumb_url
     self.trash? ? "thumb-trash.gif" : image.url(:thumb)
   end
-  
+
   def touch!
     Medium.update_all("views_count = #{self.views_count.to_i + 1}", "id = #{self.id}")
   end
-  
+
   protected  
   def self.download url
     io = open(url)
@@ -100,5 +101,6 @@ class Medium < ActiveRecord::Base
     io.original_filename.blank? ? nil : io
   rescue => e # catch url errors with validations instead of exceptions (Errno::ENOENT, OpenURI::HTTPError, etc...)
     p e
+    io.close
   end
 end

@@ -37,7 +37,7 @@ class MediaController < ApplicationController
   end
   
   def create
-    @medium = Medium.create! params[:medium]
+    @medium = Medium.create!(params[:medium])
     redirect_to media_path
   rescue
     @medium = Medium.new

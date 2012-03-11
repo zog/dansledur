@@ -11,34 +11,50 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111230103748) do
+ActiveRecord::Schema.define(:version => 20120311124156) do
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "media", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.integer  "views_count"
+    t.string    "name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "image_file_name"
+    t.string    "image_content_type"
+    t.integer   "image_file_size"
+    t.timestamp "image_updated_at"
+    t.integer   "views_count"
   end
 
   create_table "settings", :force => true do |t|
-    t.string   "key"
-    t.string   "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "key"
+    t.string    "value"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "taggings", :force => true do |t|
-    t.integer  "tag_id"
-    t.integer  "taggable_id"
-    t.string   "taggable_type"
-    t.integer  "tagger_id"
-    t.string   "tagger_type"
-    t.string   "context"
-    t.datetime "created_at"
+    t.integer   "tag_id"
+    t.integer   "taggable_id"
+    t.string    "taggable_type"
+    t.integer   "tagger_id"
+    t.string    "tagger_type"
+    t.string    "context"
+    t.timestamp "created_at"
   end
 
   add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
@@ -49,19 +65,19 @@ ActiveRecord::Schema.define(:version => 20111230103748) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "username"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string    "username"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "email",                                 :default => "", :null => false
+    t.string    "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string    "reset_password_token"
+    t.timestamp "reset_password_sent_at"
+    t.timestamp "remember_created_at"
+    t.integer   "sign_in_count",                         :default => 0
+    t.timestamp "current_sign_in_at"
+    t.timestamp "last_sign_in_at"
+    t.string    "current_sign_in_ip"
+    t.string    "last_sign_in_ip"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
