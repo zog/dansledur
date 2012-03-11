@@ -54,7 +54,7 @@ class Medium < ActiveRecord::Base
           name = name.gsub(/#\w+/, '').gsub(/\@\w+/, "").gsub(/^\s+/, '').gsub(/\s+$/, '').gsub(/\s+/, " ")
           urls.each do |url|
             url = "http://#{url}" unless /https?:\/\//.match(url)
-            medium = self.create! url: url, tag_list: tags, name: name
+            medium = self.delay.create! url: url, tag_list: tags, name: name
           end
         rescue
       end
