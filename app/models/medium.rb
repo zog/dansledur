@@ -10,7 +10,7 @@ class Medium < ActiveRecord::Base
     has_attached_file :image,
         :storage => Rails.env.production? ? :s3 : :filesystem,
         :bucket => 'dans-le-dur',
-        #:s3_alias_url => 'cdn.dansledur.com',
+        :s3_alias_url => 'cdn.dansledur.com',
         :s3_credentials => {
           :access_key_id => ENV['S3_KEY'],
           :secret_access_key => ENV['S3_SECRET']

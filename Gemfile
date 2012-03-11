@@ -17,7 +17,7 @@ gem 'will_paginate', '~> 3.0'
 #gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
 gem 'bitly'
 gem 'rack-google-analytics', :require => 'rack/google-analytics'
-#gem 'delayed_job_active_record'
+gem 'delayed_job_active_record'
 
 # Gems used only for assets and not required
 # in production environments by default.
