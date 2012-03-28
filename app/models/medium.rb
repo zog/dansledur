@@ -57,6 +57,7 @@ class Medium < ActiveRecord::Base
             medium = self.delay.create! url: url, tag_list: tags, name: name
           end
         rescue
+          p e
       end
     end.count
   end
