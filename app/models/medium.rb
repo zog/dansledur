@@ -12,6 +12,7 @@ class Medium < ActiveRecord::Base
         :bucket => 'dans-le-dur',
         :s3_host_alias => 'cdn.dansledur.com',
         :url => ':s3_alias_url', 
+        :path => "app/public/system/images/:id/:style/:filename", 
         :s3_credentials => {
           :access_key_id => ENV['S3_KEY'],
           :secret_access_key => ENV['S3_SECRET']
