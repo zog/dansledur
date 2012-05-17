@@ -2,7 +2,7 @@ require 'open-uri'
 require 'pstore'
 
 class Medium < ActiveRecord::Base
-  if ENV["RAILS_ENV"] == 'development'
+  if Rails.env.development?
     has_attached_file :image,
         :storage => :filesystem,
         :styles => { :icon => "100x64#", :medium => "680x600>", :thumb => "206x132#" }
@@ -20,17 +20,25 @@ class Medium < ActiveRecord::Base
         :styles => { :icon => "100x64#", :medium => "680x600#", :thumb => "206x132#" }
   end
   acts_as_taggable
-  attr_accessor :url
+
+  scope :not_fetched, where('fetched_at IS NULL')
+  scope :fetched, where('fetched_at IS NOT NULL')
 
   validates :name, presence: true
 
   before_create {|m| m.views_count = 0 }
 
-  def url= url
-    return unless url.present?
+  def fetch
+    return if fetched_at
     io = self.class.download(url)
+    return unless io
     self.image = io
     io.close
+    self.update_attribute :fetched_at, Time.now
+  end
+
+  def self.fetch_unfetched
+      Medium.not_fetched.each(&:fetch).count
   end
 
   def self.fetch_from_twitter
@@ -56,9 +64,10 @@ class Medium < ActiveRecord::Base
           name = name.gsub(/#\w+/, '').gsub(/\@\w+/, "").gsub(/^\s+/, '').gsub(/\s+$/, '').gsub(/\s+/, " ")
           urls.each do |url|
             url = "http://#{url}" unless /https?:\/\//.match(url)
-            medium = self.delay.create! url: url, tag_list: tags, name: name
+            medium = self.create! url: url, tag_list: tags, name: name
+            medium.fetch
           end
-        rescue
+        rescue e
           p e
       end
     end.count
@@ -104,6 +113,7 @@ class Medium < ActiveRecord::Base
     io.original_filename.blank? ? nil : io
   rescue => e # catch url errors with validations instead of exceptions (Errno::ENOENT, OpenURI::HTTPError, etc...)
     p e
-    io.close
+    nil
+    # io.close
   end
 end

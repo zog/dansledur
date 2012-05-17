@@ -2,7 +2,7 @@ class MediaController < ApplicationController
   before_filter :fetch_medium, except: [:index, :new, :create, :fetch, :hall_of_fame]
   before_filter :authenticate!, only: [:update, :edit, :new, :create, :destroy]
   def index
-    @medias = Medium
+    @medias = Medium.fetched
     @search = params[:search]
     @medias = @medias.tagged_with(@search.split(',')) unless @search.nil?
     @medias = @medias.order(:'created_at DESC'  ).paginate(:page => params[:page], :per_page => 9)
@@ -29,7 +29,9 @@ class MediaController < ApplicationController
   end
   
   def fetch
-    render text: Medium.fetch_from_twitter.to_i
+    c = Medium.fetch_from_twitter.to_i
+    c += Medium.fetch_unfetched.to_i
+    render text: c
   end
   
   def new
@@ -37,7 +39,7 @@ class MediaController < ApplicationController
   end
   
   def create
-    @medium = Medium.delay.create!(params[:medium])
+    @medium = Medium.create!(params[:medium])
     redirect_to media_path
   rescue
     @medium = Medium.new
@@ -61,6 +63,6 @@ protected
   end
 
   def fetch_medium
-    @medium = Medium.find(params[:id]) rescue not_found
+    @medium = Medium.fetched.find(params[:id]) rescue not_found
   end
 end

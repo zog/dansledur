@@ -27,7 +27,10 @@ group :assets do
   gem 'uglifier'
 end
 
-gem 'dalli'
+group :production do
+  gem 'dalli'
+end
+
 gem 'rack-cache'
 
 gem 'haml'
