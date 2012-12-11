@@ -11,8 +11,8 @@ class Medium < ActiveRecord::Base
         :storage => Rails.env.production? ? :s3 : :filesystem,
         :bucket => 'dans-le-dur',
         :s3_host_alias => 'cdn.dansledur.com',
-        :url => ':s3_alias_url', 
-        :path => "app/public/system/images/:id/:style/:filename", 
+        :url => ':s3_alias_url',
+        :path => "app/public/system/images/:id/:style/:filename",
         :s3_credentials => {
           :access_key_id => ENV['S3_KEY'],
           :secret_access_key => ENV['S3_SECRET']
@@ -38,7 +38,7 @@ class Medium < ActiveRecord::Base
   end
 
   def self.fetch_unfetched
-      Medium.not_fetched.each(&:fetch).count
+    Medium.fetch_from_twitter + Medium.not_fetched.each(&:fetch).count
   end
 
   def self.fetch_from_twitter
@@ -106,7 +106,7 @@ class Medium < ActiveRecord::Base
     Medium.update_all("views_count = #{self.views_count.to_i + 1}", "id = #{self.id}")
   end
 
-  protected  
+  protected
   def self.download url
     io = open(url)
     def io.original_filename; base_uri.path.split('/').last; end
